@@ -1,7 +1,6 @@
 const themeToggle = document.querySelector('.theme-toggle');
 const body = document.body;
 const themes = ['light', 'dark', 'system'];
-const savedTheme = localStorage.getItem('theme') || 'system';
 
 function setTheme(theme) {
     localStorage.setItem('theme', theme);
@@ -146,6 +145,6 @@ skillItems.forEach((item, index) => {
 });
 
 window.onload = () => {
-    setTheme(savedTheme);
+    setTheme('dark');
     updateLastModified();
 };

@@ -35,19 +35,17 @@
       --radius-large: 16px;
     }
 
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --text-primary: #f5f5f7;
-        --text-secondary: #86868b;
-        --text-tertiary: #6e6e73;
-        --bg-primary: #1c2526;
-        --bg-secondary: #2c2c2e;
-        --bg-tertiary: #3a3a3c;
-        --border: #424245;
-        --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.3);
-        --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.4);
-        --shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.5);
-      }
+    [data-theme="dark"] {
+      --text-primary: #f5f5f7;
+      --text-secondary: #86868b;
+      --text-tertiary: #6e6e73;
+      --bg-primary: #1c2526;
+      --bg-secondary: #2c2c2e;
+      --bg-tertiary: #3a3a3c;
+      --border: #424245;
+      --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.3);
+      --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.4);
+      --shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.5);
     }
 
     body {
@@ -72,11 +70,9 @@
       transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
-    @media (prefers-color-scheme: dark) {
-      nav {
-        background: rgba(28, 37, 38, 0.95);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      }
+    [data-theme="dark"] nav {
+      background: rgba(28, 37, 38, 0.95);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .nav-container {
@@ -101,6 +97,7 @@
       display: flex;
       list-style: none;
       gap: 2.5rem;
+      align-items: center;
     }
 
     .nav-links a {
@@ -129,6 +126,28 @@
 
     .nav-links a:hover::after {
       width: 100%;
+    }
+
+    .theme-toggle {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      color: var(--primary);
+    }
+
+    .theme-toggle svg {
+      width: 24px;
+      height: 24px;
     }
 
     /* Hero Section */
@@ -321,6 +340,34 @@
       left: 0;
       color: var(--primary);
       font-size: 1.2rem;
+    }
+
+    .certification-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-small);
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+
+    .certification-badge:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-light);
+    }
+
+    .certification-badge svg {
+      width: 20px;
+      height: 20px;
     }
 
     .skills-container {
@@ -639,7 +686,7 @@
     }
 
     /* Apple-style focus rings */
-    .btn:focus, .social-link:focus {
+    .btn:focus, .social-link:focus, .theme-toggle:focus, .certification-badge:focus {
       outline: 2px solid var(--primary);
       outline-offset: 2px;
     }
@@ -659,6 +706,13 @@
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li>
+          <button class="theme-toggle" title="Toggle Theme" aria-label="Toggle Theme">
+            <svg viewBox="0 0 24 24" fill="currentColor" class="theme-icon">
+              <path d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z"/>
+            </svg>
+          </button>
+        </li>
       </ul>
     </div>
   </nav>
@@ -701,7 +755,14 @@
               <li>Executive Education, Machine Learning and Artificial Intelligence, University of California, Berkeley, CA, USA</li>
               <li>M.S., Computer Science, Rochester Institute of Technology, New York, USA</li>
               <li>B.S., Computer Engineering, National University of Science & Technology, Islamabad, Pakistan</li>
-              <li><a href="https://www.credly.com/badges/a0de0b2f-8267-4f66-83de-fc5d12b31c18/linked_in_profile">AWS Certified Developer - Associate</a></li>
+              <li>
+                <a href="https://www.credly.com/badges/a0de0b2f-8267-4f66-83de-fc5d12b31c18/linked_in_profile" class="certification-badge" target="_blank">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                  </svg>
+                  AWS Certified Developer - Associate
+                </a>
+              </li>
             </ul>
           </div>
           <div class="skills-container">
@@ -859,10 +920,58 @@
   </footer>
 
   <script>
+    // Theme Toggle Functionality
+    const themeToggle = document.querySelector('.theme-toggle');
+    const themeIcon = document.querySelector('.theme-icon');
+    const body = document.body;
+
+    function setTheme(theme) {
+      body.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      updateThemeIcon(theme);
+    }
+
+    function updateThemeIcon(theme) {
+      if (theme === 'dark') {
+        themeIcon.innerHTML = '<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z"/>';
+      } else if (theme === 'light') {
+        themeIcon.innerHTML = '<path d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z"/>';
+      } else {
+        themeIcon.innerHTML = '<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z"/>';
+      }
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = body.getAttribute('data-theme') || 'system';
+      let newTheme;
+      if (currentTheme === 'light') {
+        newTheme = 'dark';
+      } else if (currentTheme === 'dark') {
+        newTheme = 'system';
+      } else {
+        newTheme = 'light';
+      }
+      setTheme(newTheme);
+    });
+
+    // Load saved theme or system preference
+    const savedTheme = localStorage.getItem('theme') || 'system';
+    setTheme(savedTheme);
+
+    // Watch for system theme changes if system is selected
+    if (savedTheme === 'system') {
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      mediaQuery.addEventListener('change', (e) => {
+        if (body.getAttribute('data-theme') === 'system') {
+          body.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+        }
+      });
+    }
+
     // Fetch the last commit date from GitHub API
     function updateLastModified() {
       const repoOwner = 'nabiharaza';
-      const repoName = 'nabiharaza.github.io'; // Replace with your repository name
+      const repoName = 'nabiharaza.github.io';
       const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/commits?per_page=1`;
 
       fetch(apiUrl, {
